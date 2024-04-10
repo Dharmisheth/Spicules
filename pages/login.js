@@ -297,7 +297,8 @@ const LoginPage = () => {
                   </Formik>
                   <div className="d-flex justify-content-between mt-4 mb-4">
                     <div>
-                      <a href="/forgot-password">Forgot Password?</a>
+                      {/* <a href="/forgot-password">Forgot Password?</a> */}
+                      <Link>Forget Password</Link>
                     </div>
                     {/* <div>
                       <FaGoogle className="mx-2" size={24} />
