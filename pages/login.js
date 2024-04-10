@@ -206,7 +206,7 @@ const LoginPage = () => {
                 width: "50%",
               }}
             >
-              <img
+              {/* <img
                 src="/onboarding-lead.webp"
                 alt="Card image cap"
                 style={{
@@ -215,7 +215,7 @@ const LoginPage = () => {
                   marginTop: "3rem",
                   marginLeft: "7rem",
                 }}
-              />
+              /> */}
             </div>
           </Col>
 
