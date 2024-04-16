@@ -206,7 +206,7 @@ const LoginPage = () => {
                 width: "50%",
               }}
             >
-              {/* <img
+              <img
                 src="/onboarding-lead.webp"
                 alt="Card image cap"
                 style={{
@@ -215,7 +215,7 @@ const LoginPage = () => {
                   marginTop: "3rem",
                   marginLeft: "7rem",
                 }}
-              /> */}
+              />
             </div>
           </Col>
 
@@ -297,8 +297,8 @@ const LoginPage = () => {
                   </Formik>
                   <div className="d-flex justify-content-between mt-4 mb-4">
                     <div>
-                      {/* <a href="/forgot-password">Forgot Password?</a> */}
-                      <Link>Forget Password</Link>
+                      <a href="/forgot-password">Forgot Password?</a>
+              
                     </div>
                     {/* <div>
                       <FaGoogle className="mx-2" size={24} />
