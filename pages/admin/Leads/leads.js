@@ -100,8 +100,8 @@ const Leads = () => {
                 <Button className="btn" color="primary" size="lg" href="/admin/Leads/Upload">
                  Import Leads
                 </Button>
-                <Button className="btn" color="primary" size="lg" href="/admin/Leads/dashboard">
-                 DASHBOARD
+                <Button className="btn" color="primary" size="lg" href="/admin/Leads/Analysiss">
+                 Analysis
                 </Button>
               </div>
             </CardBody>
