@@ -14,6 +14,7 @@ import { useState } from "react";
 import TimeTracker from "@/pages/tracker";
 
 const navigation = [
+  
   {
     title: "Dashboard",
     href: "/admin",
@@ -36,29 +37,29 @@ const navigation = [
   },
   {
     title: "Ticket",
-    href: "/admin/ticket",
+    href: "/admin/TicktingAssigne/page",
     icon: "bi bi-ticket-perforated",
   },
-  {
-    title: "Alert",
-    href: "/admin/ui/alerts",
-    icon: "bi bi-bell",
-  },
-  {
-    title: "Tables",
-    href: "/admin/ui/tables",
-    icon: "bi bi-bell",
-  },
+  // {
+  //   title: "Alert",
+  //   href: "/admin/ui/alerts",
+  //   icon: "bi bi-bell",
+  // },
+  // {
+  //   title: "Tables",
+  //   href: "/admin/ui/tables",
+  //   icon: "bi bi-bell",
+  // },
   {
     title: "About",
     href: "/admin/about",
     icon: "bi bi-people",
   },
-  {
-    title: "Button",
-    href: "/admin/ui/buttons",
-    icon: "bi bi-people",
-  },
+  // {
+  //   title: "Button",
+  //   href: "/admin/ui/buttons",
+  //   icon: "bi bi-people",
+  // },
 ]
 const Sidebar = ({ showMobilemenu }) => {
   let curl = useRouter();

@@ -3,7 +3,7 @@ import Link from 'next/link'
 const Services3 = () => {
     return (
         <div>
-            <div className=" bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center"
+            {/* <div className=" bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center"
                 style={{
                     height: '13vh',
                     textAlign: 'center',
@@ -20,7 +20,7 @@ const Services3 = () => {
                         </span>
                     </button>
                 </Link>
-            </div>
+            </div> */}
             <div>
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white ml-5 mt-4">We strive to design the most compatible, reliable, secure and functional hardware – in tune with tech and sustainability requirements - for your dream product.</h5>
             </div>

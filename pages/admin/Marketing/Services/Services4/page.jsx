@@ -7,7 +7,7 @@ const Services4 = () => {
 
     return (
         <div>
-            <div className=" bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center"
+            {/* <div className=" bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center"
                 style={{
                     height: '13vh',
                     textAlign: 'center',
@@ -24,7 +24,7 @@ const Services4 = () => {
                         </span>
                     </button>
                 </Link>
-            </div>
+            </div> */}
             <div>
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white ml-5 mt-4">Embedded Software Development Services for Connected Products</h5>
             </div>

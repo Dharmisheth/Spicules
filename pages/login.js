@@ -146,7 +146,8 @@ const LoginPage = () => {
   const router = useRouter(); // Initialize Next.js router
 
   const validationSchema = Yup.object().shape({
-    email: Yup.string().email("Invalid email").required("Email is required"),
+    email: Yup.string().email("Invalid email").required("Email is required")
+    .matches(/^[A-Za-z0-9]+(?:[._%+-][A-Za-z0-9]+)*@[A-Za-z0-9.-]+\.[A-Z]{2,}(?:\.[A-Za-z]{2,})?$/i, 'Invalid email Id'),
     password: Yup.string()
       .required("Password is required")
       .min(6, "Password must be at least 6 characters")

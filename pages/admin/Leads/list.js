@@ -149,86 +149,227 @@
 // export default List;
 
 
+// import React, { useState, useEffect } from 'react';
+// import { Card, CardBody, CardTitle, Table, Button } from 'reactstrap';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faEdit, faTrashAlt, faHandshake } from '@fortawesome/free-solid-svg-icons';
+// import ChartComponent from './ChartComponenet'; // Import the ChartComponent
+
+// const List = () => {
+//   // Define state to store leads
+//   const [leads, setLeads] = useState([]);
+
+//   useEffect(() => {
+//     // Retrieve leads data from local storage on component mount
+//     const storedLeads = localStorage.getItem('leads');
+//     if (storedLeads) {
+//       setLeads(JSON.parse(storedLeads));
+//     }
+//   }, []);
+
+//   // Aggregate lead data based on status and source
+//   const aggregateData = () => {
+//     const aggregatedData = {};
+//     leads.forEach((lead) => {
+//       const key = `${lead.status}-${lead.source}`;
+//       if (aggregatedData[key]) {
+//         aggregatedData[key]++;
+//       } else {
+//         aggregatedData[key] = 1;
+//       }
+//     });
+//     return aggregatedData;
+//   };
+
+//   // Function to convert aggregated data to series format for chart
+//   const convertToSeries = (aggregatedData) => {
+//     const series = [];
+//     const categories = [];
+//     Object.entries(aggregatedData).forEach(([key, value]) => {
+//       const [status, source] = key.split('-');
+//       if (!series.find((s) => s.name === status)) {
+//         series.push({ name: status, data: [] });
+//       }
+//       series.find((s) => s.name === status).data.push(value);
+//       if (!categories.includes(source)) {
+//         categories.push(source);
+//       }
+//     });
+//     return { series, categories };
+//   };
+
+//   const aggregatedData = aggregateData();
+//   const { series, categories } = convertToSeries(aggregatedData);
+
+//   const options = {
+//     chart: {
+//       type: 'bar',
+//     },
+//     xaxis: {
+//       categories: categories,
+//     },
+//   };
+
+//   // Function to handle lead deletion
+//   const handleDelete = (index) => {
+//     const updatedLeads = leads.filter((lead, i) => i !== index);
+//     setLeads(updatedLeads);
+//     // Update local storage
+//     localStorage.setItem('leads', JSON.stringify(updatedLeads));
+//   };
+
+//   // Function to get current date
+//   const getCurrentDate = () => {
+//     const date = new Date();
+//     return date.toLocaleDateString(); // Customize as per your requirement
+//   };
+
+//   return (
+//     <div>
+//       <Card>
+//         <CardTitle tag="h3" className="border-bottom p-3 mb-0">
+//           List of Created List
+//         </CardTitle>
+//         <CardBody>
+//           <Table className="table">
+//             <thead>
+//               <tr>
+//                 <th>No.</th>
+//                 <th>Name</th>
+//                 <th>Email</th>
+//                 <th>Source</th>
+//                 <th>Status</th>
+//                 <th>Date Added</th>
+//                 <th>Actions</th>
+//               </tr>
+//             </thead>
+//             <tbody>
+//               {leads.map((lead, index) => (
+//                 <tr key={index}>
+//                   <td>{index + 1}.</td>
+//                   <td>{lead.name}</td>
+//                   <td>{lead.email}</td>
+//                   <td>{lead.source}</td>
+//                   <td>{lead.status}</td>
+//                   <td>{lead.dateAdded || getCurrentDate()}</td>
+//                   <td>
+//                     <div className="button-group">
+//                       <Button color="primary" className="mr-2">
+//                         <FontAwesomeIcon icon={faEdit} /> Update
+//                       </Button>
+//                       <Button color="danger" onClick={() => handleDelete(index)}>
+//                         <FontAwesomeIcon icon={faTrashAlt} /> Delete
+//                       </Button>
+//                       <Button color="success" className="mr-2">
+//                         <FontAwesomeIcon icon={faHandshake} /> Deal !
+//                       </Button>
+//                     </div>
+//                   </td>
+//                 </tr>
+//               ))}
+//             </tbody>
+//           </Table>
+//         </CardBody>
+//       </Card>
+
+//       {/* Render the ChartComponent with appropriate props */}
+//       {/* <ChartComponent options={options} series={series} /> */}
+//     </div>
+//   );
+// };
+
+// export default List;
+
 import React, { useState, useEffect } from 'react';
-import { Card, CardBody, CardTitle, Table, Button } from 'reactstrap';
+import { Card, CardBody, CardTitle, Table, Button, Input, FormGroup, FormFeedback } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrashAlt, faHandshake } from '@fortawesome/free-solid-svg-icons';
-import ChartComponent from './ChartComponenet'; // Import the ChartComponent
+import { faEdit, faTrashAlt, faHandshake, faSave, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const List = () => {
-  // Define state to store leads
   const [leads, setLeads] = useState([]);
 
   useEffect(() => {
-    // Retrieve leads data from local storage on component mount
     const storedLeads = localStorage.getItem('leads');
     if (storedLeads) {
-      setLeads(JSON.parse(storedLeads));
+      setLeads(JSON.parse(storedLeads).map(lead => ({ ...lead, isEditing: false, errors: {} })));
     }
   }, []);
 
-  // Aggregate lead data based on status and source
-  const aggregateData = () => {
-    const aggregatedData = {};
-    leads.forEach((lead) => {
-      const key = `${lead.status}-${lead.source}`;
-      if (aggregatedData[key]) {
-        aggregatedData[key]++;
-      } else {
-        aggregatedData[key] = 1;
+  const validateLead = (lead) => {
+    const errors = {};
+    if (!lead.name.trim()) {
+      errors.name = 'Name is required.';
+    }
+    if (!lead.email.trim()) {
+      errors.email = 'Email is required.';
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(lead.email)) {
+      errors.email = 'Invalid email address.';
+    }
+    if (!lead.source.trim()) {
+      errors.source = 'Source is required.';
+    }
+    if (!lead.status.trim()) {
+      errors.status = 'Status is required.';
+    }
+    return errors;
+  };
+
+  const handleSave = index => {
+    const lead = leads[index];
+    const errors = validateLead(lead);
+    if (Object.keys(errors).length === 0) {
+      const newLeads = leads.map((l, i) => ({
+        ...l,
+        isEditing: false
+      }));
+      setLeads(newLeads);
+      localStorage.setItem('leads', JSON.stringify(newLeads));
+    } else {
+      const newLeads = leads.map((l, i) => i === index ? { ...l, errors } : l);
+      setLeads(newLeads);
+    }
+  };
+
+  const handleChange = (index, e) => {
+    const { name, value } = e.target;
+    const newLeads = leads.map((lead, i) => {
+      if (i === index) {
+        const updatedLead = { ...lead, [name]: value };
+        const errors = validateLead(updatedLead);
+        return { ...updatedLead, errors };
       }
+      return lead;
     });
-    return aggregatedData;
+    setLeads(newLeads);
   };
 
-  // Function to convert aggregated data to series format for chart
-  const convertToSeries = (aggregatedData) => {
-    const series = [];
-    const categories = [];
-    Object.entries(aggregatedData).forEach(([key, value]) => {
-      const [status, source] = key.split('-');
-      if (!series.find((s) => s.name === status)) {
-        series.push({ name: status, data: [] });
-      }
-      series.find((s) => s.name === status).data.push(value);
-      if (!categories.includes(source)) {
-        categories.push(source);
-      }
-    });
-    return { series, categories };
+  const handleEdit = index => {
+    const newLeads = leads.map((lead, i) => ({
+      ...lead,
+      isEditing: i === index ? true : lead.isEditing
+    }));
+    setLeads(newLeads);
   };
 
-  const aggregatedData = aggregateData();
-  const { series, categories } = convertToSeries(aggregatedData);
-
-  const options = {
-    chart: {
-      type: 'bar',
-    },
-    xaxis: {
-      categories: categories,
-    },
+  const handleCancel = index => {
+    const newLeads = leads.map((lead, i) => ({
+      ...lead,
+      isEditing: i === index ? false : lead.isEditing
+    }));
+    setLeads(newLeads);
   };
 
-  // Function to handle lead deletion
-  const handleDelete = (index) => {
+  const handleDelete = index => {
     const updatedLeads = leads.filter((lead, i) => i !== index);
     setLeads(updatedLeads);
-    // Update local storage
     localStorage.setItem('leads', JSON.stringify(updatedLeads));
-  };
-
-  // Function to get current date
-  const getCurrentDate = () => {
-    const date = new Date();
-    return date.toLocaleDateString(); // Customize as per your requirement
   };
 
   return (
     <div>
       <Card>
         <CardTitle tag="h3" className="border-bottom p-3 mb-0">
-          List of Created List
+          List of Leads
         </CardTitle>
         <CardBody>
           <Table className="table">
@@ -239,30 +380,85 @@ const List = () => {
                 <th>Email</th>
                 <th>Source</th>
                 <th>Status</th>
-                <th>Date Added</th>
+                {/* <th>Date Added</th> */}
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
               {leads.map((lead, index) => (
                 <tr key={index}>
-                  <td>{index + 1}.</td>
-                  <td>{lead.name}</td>
-                  <td>{lead.email}</td>
-                  <td>{lead.source}</td>
-                  <td>{lead.status}</td>
-                  <td>{lead.dateAdded || getCurrentDate()}</td>
+                  <td>{index + 1}</td>
+                  {lead.isEditing ? (
+                    <>
+                      <td>
+                        <FormGroup>
+                          <Input type="text" name="name" value={lead.name} invalid={!!lead.errors.name} onChange={(e) => handleChange(index, e)} />
+                          <FormFeedback>{lead.errors.name}</FormFeedback>
+                        </FormGroup>
+                      </td>
+                      <td>
+                        <FormGroup>
+                          <Input type="email" name="email" value={lead.email} invalid={!!lead.errors.email} onChange={(e) => handleChange(index, e)} />
+                          <FormFeedback>{lead.errors.email}</FormFeedback>
+                        </FormGroup>
+                      </td>
+                      <td>
+                        <FormGroup>
+                          <Input type="select" name="source" value={lead.source} invalid={!!lead.errors.source} onChange={(e) => handleChange(index, e)}>
+                            <option>--select--</option>
+                            <option>Spicules Technologies Website</option>
+                            <option>LinkedIn</option>
+                            <option>Referral</option>
+                            <option>Instagram</option>
+                          </Input>
+                          <FormFeedback>{lead.errors.source}</FormFeedback>
+                        </FormGroup>
+                      </td>
+                      <td>
+                        <FormGroup>
+                          <Input type="select" name="status" value={lead.status} invalid={!!lead.errors.status} onChange={(e) => handleChange(index, e)}>
+                            <option>--select--</option>
+                            <option>Pending</option>
+                            <option>Working</option>
+                            <option>Followed</option>
+                          </Input>
+                          <FormFeedback>{lead.errors.status}</FormFeedback>
+                        </FormGroup>
+                      </td>
+                    </>
+                  ) : (
+                    <>
+                      <td>{lead.name}</td>
+                      <td>{lead.email}</td>
+                      <td>{lead.source}</td>
+                      <td>{lead.status}</td>
+                    </>
+                  )}
+                  {/* <td>{lead.dateAdded}</td> */}
                   <td>
                     <div className="button-group">
-                      <Button color="primary" className="mr-2">
-                        <FontAwesomeIcon icon={faEdit} /> Update
-                      </Button>
-                      <Button color="danger" onClick={() => handleDelete(index)}>
-                        <FontAwesomeIcon icon={faTrashAlt} /> Delete
-                      </Button>
-                      <Button color="success" className="mr-2">
-                        <FontAwesomeIcon icon={faHandshake} /> Deal !
-                      </Button>
+                      {lead.isEditing ? (
+                        <>
+                          <Button color="success" className="mr-2" onClick={() => handleSave(index)}>
+                            <FontAwesomeIcon icon={faSave} /> Save
+                          </Button>
+                          <Button color="secondary" onClick={() => handleCancel(index)}>
+                            <FontAwesomeIcon icon={faTimes} /> Cancel
+                          </Button>
+                        </>
+                      ) : (
+                        <>
+                          <Button color="primary" className="mr-2" onClick={() => handleEdit(index)}>
+                            <FontAwesomeIcon icon={faEdit} /> Update
+                          </Button>
+                          <Button color="danger" onClick={() => handleDelete(index)}>
+                            <FontAwesomeIcon icon={faTrashAlt} /> Delete
+                          </Button>
+                          <Button color="success" className="mr-2">
+                            <FontAwesomeIcon icon={faHandshake} /> Deal!
+                          </Button>
+                        </>
+                      )}
                     </div>
                   </td>
                 </tr>
@@ -271,9 +467,6 @@ const List = () => {
           </Table>
         </CardBody>
       </Card>
-
-      {/* Render the ChartComponent with appropriate props */}
-      <ChartComponent options={options} series={series} />
     </div>
   );
 };

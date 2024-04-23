@@ -992,6 +992,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "../components/Navbar";
 import Image from "next/image";
 import logo from "../public/Color logo - no background.png";
+import { MdEmail, MdCall } from "react-icons/md";
 import { FaGoogle, FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
 
 export default function Home() {
@@ -1005,8 +1006,8 @@ export default function Home() {
 
       <main>
         <section className="hero">
-          <div className="overlay" ></div>
-          <Container >
+          <div className="overlay"></div>
+          <Container>
             <h1 className="text-center">Manage Your Customers Effectively!</h1>
             <p className="text-center">
               A powerful CRM web application to streamline your business
@@ -1021,25 +1022,32 @@ export default function Home() {
               <Col xs={12} md={6} className="mb-4 mb-md-0">
                 <h1 className="text-left mb-3">Spicules Insight</h1>
                 <p className="text-left mb-3">
-                  Automating your workflows, processes, campaigns, customer journeys, and more enables you to focus on building great relationships. Spicules Insight CRM is built to get more done in less time.
+                  Automating your workflows, processes, campaigns, customer
+                  journeys, and more enables you to focus on building great
+                  relationships. Spicules Insight CRM is built to get more done
+                  in less time.
                 </p>
                 <div className="text-left">
                   <Button color="primary" href="/login">
                     Get Started
                   </Button>
                 </div>
+
               </Col>
               <Col xs={12} md={6} className="text-center">
                 <Image src={logo} alt="Logo" height={100} width={300} />
               </Col>
+
             </Row>
           </Container>
         </section>
 
-
-        <section className=" py-2" style={{
-          background: '#71bbd4'
-          }}>
+        <section
+          className=" py-2"
+          style={{
+            background: "#71bbd4",
+          }}
+        >
           <Container>
             <h2 className="text-center text-white">Our Features</h2>
           </Container>
@@ -1053,8 +1061,8 @@ export default function Home() {
                   <CardHeader tag="h5">Lead Management</CardHeader>
                   <CardBody>
                     <CardText>
-                      With supporting text below as a natural lead-in to
-                      additional content.
+                      Lead management in CRM involves capturing, tracking, and
+                      nurturing potential customers.
                     </CardText>
                   </CardBody>
                 </Card>
@@ -1064,8 +1072,9 @@ export default function Home() {
                   <CardHeader tag="h5">Sales Management</CardHeader>
                   <CardBody>
                     <CardText>
-                      With supporting text below as a natural lead-in to
-                      additional content.
+                      Sales management in CRM involves overseeing and optimizing
+                      the entire sales process, from lead generation to closing
+                      deals.
                     </CardText>
                   </CardBody>
                 </Card>
@@ -1075,8 +1084,8 @@ export default function Home() {
                   <CardHeader tag="h5">Ticket Management</CardHeader>
                   <CardBody>
                     <CardText>
-                      With supporting text below as a natural lead-in to
-                      additional content.
+                      Ticket management in CRM involves efficiently handling and
+                      resolving customer inquiries, issues, or requests.
                     </CardText>
                   </CardBody>
                 </Card>
@@ -1086,8 +1095,8 @@ export default function Home() {
                   <CardHeader tag="h5">Marketing Management</CardHeader>
                   <CardBody>
                     <CardText>
-                      With supporting text below as a natural lead-in to
-                      additional content.
+                      Marketing management in CRM involves strategizing,
+                      executing, and analyzing marketing campaigns. 
                     </CardText>
                   </CardBody>
                 </Card>
@@ -1097,9 +1106,12 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="py-4" style={{
-        background:'#e9f5f8'
-      }}>
+      <footer
+        className="py-4"
+        style={{
+          background: "#e9f5f8",
+        }}
+      >
         <Container>
           <Row>
             <Col
@@ -1109,7 +1121,12 @@ export default function Home() {
             >
               <div className="d-flex flex-column align-items-left justify-content-center">
                 <h3>Contact Us</h3>
-                <p>your.email@example.com</p>
+                <MdEmail className="list-inline-item fs-4"></MdEmail>
+                <p>info@spiculestech.com</p>
+                <div class="contact-info">
+                  <MdCall className="phone-icon"></MdCall>
+                  <p className="phone-number">+91 9998 787 527</p>
+                </div>
               </div>
             </Col>
             <Col

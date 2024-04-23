@@ -85,9 +85,9 @@ const page = () => {
     </CardTitle>
     <CardBody className="">
       <div className="button-group">
-        <Button className="btn" color="primary" size="lg" href="/admin/Leads/createlead">
+        {/* <Button className="btn" color="primary" size="lg" href="/admin/Leads/createlead">
           Email Campain
-        </Button>
+        </Button> */}
         <Button className="btn" color="primary" size="lg" href="/admin/Marketing/Inquiries/page">
           Inquiries
         </Button>
@@ -97,7 +97,7 @@ const page = () => {
         <Button className="btn" color="primary" size="lg" href="./Inquiries/Listofinquiries/page">
          List Of Inquiries
         </Button>
-        <Button className="btn" color="primary" size="lg" href="/admin/Leads/dashboard">
+        <Button className="btn" color="primary" size="lg" href="/admin/Marketing/Services/page">
          Services
         </Button>
       </div>
