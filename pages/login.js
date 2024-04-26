@@ -61,7 +61,7 @@ const LoginPage = () => {
     <div style={{ overflowX: "hidden" }}>
       <Container fluid>
         <Row className="min-vh-100">
- {/* Left Side - Image */}
+
  <Col xs={12} md={6} className="p-0">
             <div
               style={{
@@ -76,7 +76,7 @@ const LoginPage = () => {
             ></div>
           </Col>
 
-          {/* Right Side - Login Form */}
+          
           <Col xs={12} md={6} className="p-0">
             <div className="d-flex align-items-center justify-content-center w-100 h-100">
               <Card className="w-100" style={{ maxWidth: '400px' }}>
