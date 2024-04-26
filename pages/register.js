@@ -231,6 +231,7 @@ const RegistrationPage = () => {
 
     try {
       // Make a POST request to your Django registration API
+      console.log('values---', values)
       const response = await axios.post('http://localhost:8000/api/register/', values);
 
       // Check if registration was successful
