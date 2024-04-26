@@ -53,7 +53,6 @@ const LoginPage = () => {
     } catch (error) {
       console.error("Error:", error);
       // Handle authentication error
-      // setError(error.message);
     }
   };
 
