@@ -74,9 +74,7 @@ const LoginPage = () => {
                 backgroundImage: `url('/onboarding-lead.webp')`,
               }}
             ></div>
-          </Col>
-
-          
+          </Col>          
           <Col xs={12} md={6} className="p-0">
             <div className="d-flex align-items-center justify-content-center w-100 h-100">
               <Card className="w-100" style={{ maxWidth: '400px' }}>
