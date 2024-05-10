@@ -14,11 +14,10 @@ const List = ({ uploadedData }) => {
   }, []);
 
   useEffect(() => {
-    if (uploadedData.length > 0) {
+    if (uploadedData && uploadedData.length > 0) {
       setLeads(uploadedData);
     }
   }, [uploadedData]);
-
   const validateLead = (lead) => {
     const errors = {};
     if (!lead.name.trim()) {

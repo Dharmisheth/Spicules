@@ -11,6 +11,7 @@ import {
 } from 'reactstrap';
 import Logo from '@/src/layouts/logo/Logo';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 function Example(args) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -32,17 +33,6 @@ function Example(args) {
                 About Us
               </NavLink>
             </NavItem>
-            {/* <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
-                Options
-              </DropdownToggle> */}
-              {/* <DropdownMenu right>
-                <DropdownItem>Login</DropdownItem>
-                <DropdownItem>Option </DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>Reset</DropdownItem>
-              </DropdownMenu> */}
-            {/* </UncontrolledDropdown> */}
           </Nav>
           <NavLink href="/">Login Here</NavLink>
 
@@ -51,7 +41,8 @@ function Example(args) {
       </Navbar>
       <style >{`
                  nav {
-                  background: linear-gradient(to top, #E1E1E1, #AFAFAF);
+                  background-color: #E1E1E1;
+                  // background: linear-gradient(to top, #E1E1E1, #AFAFAF);
       `}</style>
 
     </div>

@@ -1016,7 +1016,8 @@ export default function Home() {
           </Container>
         </section>
 
-        <section className="mt-4 mb-4">
+        <section className="py-5">
+          <div className="">
           <Container>
             <Row className="align-items-center justify-content-center">
               <Col xs={12} md={6} className="mb-4 mb-md-0">
@@ -1032,24 +1033,23 @@ export default function Home() {
                     Get Started
                   </Button>
                 </div>
-
               </Col>
               <Col xs={12} md={6} className="text-center">
                 <Image src={logo} alt="Logo" height={100} width={300} />
               </Col>
-
             </Row>
           </Container>
+          </div>
         </section>
 
         <section
           className=" py-2"
           style={{
-            background: "#71bbd4",
+            background: "#e9f5f8",
           }}
         >
           <Container>
-            <h2 className="text-center text-white">Our Features</h2>
+            <h2 className="text-center ">Our Features</h2>
           </Container>
         </section>
 
@@ -1096,7 +1096,7 @@ export default function Home() {
                   <CardBody>
                     <CardText>
                       Marketing management in CRM involves strategizing,
-                      executing, and analyzing marketing campaigns. 
+                      executing, and analyzing marketing campaigns.
                     </CardText>
                   </CardBody>
                 </Card>

@@ -6,6 +6,14 @@ $font-family-sans-serif: "Rubik", sans-serif;
 /*******************/
 // Theme Colors
 /********************/
+
+// @mixin gradient($start-color, $end-color) {
+//   background: linear-gradient(to bottom, $start-color 0%, $end-color 100%);
+// }
+// $primary-gradient: (
+//   start-color: #000099,
+//   end-color: #66ccff
+// );
 $primary: #009efb;
 $info: #604dcf;
 $danger: #f62d51;
