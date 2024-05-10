@@ -12,7 +12,7 @@ import {
 const List = ({ leads }) => {
   return (
     <Row>
-      <Col>
+      <Col>     
         <Card>
           <CardTitle tag="h3" className="border-bottom p-3 mb-0">
             List of Created Leads

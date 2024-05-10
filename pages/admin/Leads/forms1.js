@@ -169,7 +169,7 @@ const Forms = ({ onAddLead }) => {
             {formik.touched.email && formik.errors.email && <div className="text-danger">{formik.errors.email}</div>}
           </div>
           <div className="mb-3">
-            <label htmlFor="source" className="form-label">Lead's Source<span className="text-danger">*</span></label>
+            <label htmlFor="source" className="form-label">Lead Source<span className="text-danger">*</span></label>
             <select id="source" className="form-control" {...formik.getFieldProps('source')}>
               <option>--select--</option>
               <option>Spicules Technologies Website</option>
@@ -180,7 +180,7 @@ const Forms = ({ onAddLead }) => {
             {formik.touched.source && formik.errors.source && <div className="text-danger">{formik.errors.source}</div>}
           </div>
           <div className="mb-3">
-            <label htmlFor="status" className="form-label">Lead's Status<span className="text-danger">*</span></label>
+            <label htmlFor="status" className="form-label">Lead Status<span className="text-danger">*</span></label>
             <select id="status" className="form-control" {...formik.getFieldProps('status')} required>
               <option>--select--</option>
               <option>Pending</option>
