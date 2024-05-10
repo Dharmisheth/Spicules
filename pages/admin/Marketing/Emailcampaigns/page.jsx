@@ -1,13 +1,9 @@
 import React from 'react'
-import Dashboard from '@/components/dashboard';
 
-const emailcampaigns= () => {
+const page = () => {
   return (
-    <div>
-      <Dashboard />
-      
-    </div>
+    <div>page</div>
   )
 }
 
-export default emailcampaigns
+export default page
